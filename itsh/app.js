@@ -9,6 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var products = require('./routes/products');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/itsh');
+
 var app = express();
 
 // view engine setup

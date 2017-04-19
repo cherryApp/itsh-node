@@ -11,10 +11,12 @@ block content
             h1.name Start Bootstrap
             hr.star-light
             span.skills Web Developer - Graphic Artist - User Experience Designer
-  section#portfolio
+  section#portfolio(data-ng-controller='ProductController')
     .container
       .row
         .col-lg-12.text-center
-          h2 Products
+          h2(data-ng-bind='search')
           hr.star-primary
+          .col-xs-2.col-xs-offset-10
+            input.form-control(ng-model='search')
       
