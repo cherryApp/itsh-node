@@ -19,4 +19,13 @@ block content
           hr.star-primary
           .col-xs-2.col-xs-offset-10
             input.form-control(ng-model='search')
+          .col-xs-10.col-xs-offset-1
+            table.table.table-striped
+              thead
+                tr
+                  th(ng-if='checkRow(key)' ng-repeat='(key, value) in tableData[0]')
+                  | {{key}}
+              tbody
+                tr(ng-repeat='row in tableData | filter:search')
+                  td(ng-if='checkRow(key)' ng-repeat='(key, value) in row') {{value}}
       
