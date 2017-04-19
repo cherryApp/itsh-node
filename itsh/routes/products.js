@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
+/*
 var Product = mongoose.model('Product', {
   name: String,
   price: Number,
@@ -22,6 +23,7 @@ phone.save( (err, data, docs) => {
   } 
   console.log(`save product: ${docs} pcs`);
 });
+*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

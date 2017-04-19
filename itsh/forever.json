@@ -1,0 +1,6 @@
+{
+    "uid": "itsh",
+    "append": true,
+    "watch": true,
+    "script": "./bin/www"
+}
