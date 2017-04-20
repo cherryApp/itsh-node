@@ -3,7 +3,7 @@ var itsh = angular.module('itsh', []);
 
 // Products controller.
 itsh.controller('ProductController', ['$scope', '$http', function($scope, $http) {
-    // $scope.search = 'Portfolio';
+    $scope.search = {};
 
     $scope.checkRow = function(key) {
         return ["_id", "__v"].indexOf(key) == -1;
