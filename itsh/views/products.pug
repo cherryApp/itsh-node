@@ -23,21 +23,26 @@ block content
             table.table.table-striped
               thead
                 tr
-                  th(ng-if='checkRow(key)' ng-repeat='(key, value) in tableData[0]')
-                  | {{key}}
+                  th(ng-repeat='col in cols') {{col.label}}
                   th 
                 tr
-                  td(ng-if='checkRow(key)' ng-repeat='(key, value) in tableData[0]')
-                    input.form-control(ng-model='search[key]')
+                  td(ng-repeat='col in cols')
+                    input.form-control(ng-model='search[col.key]')
                   td 
+                tr
+                  td(ng-repeat='col in cols')
+                    input.form-control(ng-model='newRow[col.key]')
+                  td 
+                    button.btn.btn-success(ng-click='insertRow(newRow)')
+                      span.glyphicon.glyphicon-plus
               tbody
                 tr(ng-repeat='row in tableData | filter:search')
-                  td(ng-if='checkRow(key)' ng-repeat='(key, value) in row')
-                    input.form-control(ng-model='row[key]')
+                  td(ng-repeat='col in cols')
+                    input.form-control(ng-model='row[col.key]')
                   td
                     .btn-group
                       button.btn.btn-info(ng-click='editRow(row)')
                         span.glyphicon.glyphicon-edit
-                      button.btn.btn-danger
+                      button.btn.btn-danger(ng-click='deleteRow(row)')
                         span.glyphicon.glyphicon-trash
       
