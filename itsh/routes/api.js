@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 // Models.
 const models = {};
+models.scheme = {};
 models.product = mongoose.model('Product', {
     name: String,
     price: Number,
@@ -11,13 +12,14 @@ models.product = mongoose.model('Product', {
     active: Boolean
 });
 
-models.user = mongoose.model('User', {
+models.scheme.user = {
     name: String,
     email: String,
     phone: String,
     address: String,
     active: Boolean
-});
+};
+models.user = mongoose.model('User', models.scheme.user);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,7 +34,10 @@ router.get('/:collection', function(req, res, next) {
                 res.writeHead(501, 'Database Error.');
                 return res.send();
             }
-            res.json(data);
+            res.json({
+                docs: data,
+                scheme: models.scheme[collection]
+            });
         });
     } else {
         res.writeHead(404, 'No Colleciton!');
