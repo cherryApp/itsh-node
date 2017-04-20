@@ -40,4 +40,26 @@ router.get('/:collection', function(req, res, next) {
   }
 });
 
+// Update document.
+router.post('/:collection/:id', (req, res, next) => {
+  let collection = req.params.collection;
+  let id = req.params.id;
+
+  if (models[collection]) {
+    models[collection].update(
+      {_id: id},
+      req.body,
+      {},
+      (err, data) => {
+        if (err) {
+          return res.json(err);
+        }
+        res.json(data);
+      });
+  } else {
+    res.writeHead(404, 'No Colleciton!');
+    return res.send();
+  }
+});
+
 module.exports = router;

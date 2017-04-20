@@ -25,11 +25,19 @@ block content
                 tr
                   th(ng-if='checkRow(key)' ng-repeat='(key, value) in tableData[0]')
                   | {{key}}
+                  th 
                 tr
                   td(ng-if='checkRow(key)' ng-repeat='(key, value) in tableData[0]')
                     input.form-control(ng-model='search[key]')
+                  td 
               tbody
                 tr(ng-repeat='row in tableData | filter:search')
                   td(ng-if='checkRow(key)' ng-repeat='(key, value) in row')
                     input.form-control(ng-model='row[key]')
+                  td
+                    .btn-group
+                      button.btn.btn-info(ng-click='editRow(row)')
+                        span.glyphicon.glyphicon-edit
+                      button.btn.btn-danger
+                        span.glyphicon.glyphicon-trash
       
