@@ -1,6 +1,6 @@
 // Products controller.
-itsh.controller('ProductController', ['$scope', '$http', 'crudFactory',
- function($scope, $http, crudFactory) {
+itsh.controller('ProductController', ['$scope', '$http', 'Config', 'crudFactory',
+ function($scope, $http, Config, crudFactory) {
     $scope.search = {};
     $scope.newRow = {};
     $scope.cols = [
@@ -9,6 +9,8 @@ itsh.controller('ProductController', ['$scope', '$http', 'crudFactory',
         {key: 'price', label: 'Price', valid: '^[0-9 \.]{1,10}$'},
         {key: 'active', label: 'Active', valid: '^(true|false)$'}
     ];
+
+    $scope.message = {};    
 
     $scope.checkValid = function(field) {
         return !field.$valid && field.$dirty && !field.$pristine;
@@ -19,6 +21,10 @@ itsh.controller('ProductController', ['$scope', '$http', 'crudFactory',
         $http.post('api/product/' + row._id, row)
             .then( function(serverResponse) {
                 console.log(serverResponse.data);
+                $scope.message = {
+                    mTitle: Config.message.saveSuccess, 
+                    mMessage: Config.message.saveModified
+                };
             }, function(err) {
                 console.error(err);
             });
