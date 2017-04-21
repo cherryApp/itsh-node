@@ -6,7 +6,7 @@ describe('angularjs homepage todo list', function() {
         element(by.css('[value="add"]')).click();
 
         var todoList = element.all(by.repeater('todo in todoList.todos'));
-        expect(todoList.count()).toEqual(3);
+        expect(todoList.count()).toEqual(3, 'todo list count');
         expect(todoList.get(2).getText()).toEqual('write first protractor test');
 
         // You wrote your first test, cross it off the list
